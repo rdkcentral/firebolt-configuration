@@ -1,5 +1,5 @@
-firebolt-configurations
-=======================
+firebolt-configuration
+======================
 
 This repository contains JSON Schema specifications for any/all Firebolt configuration files.
 
