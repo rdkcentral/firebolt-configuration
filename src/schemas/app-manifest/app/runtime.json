@@ -1,0 +1,23 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/app/runtime",
+  "title": "Firebolt App Manifest: App Config: Runtime Config",
+  "description": "app.runtime",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The name of the FNCI that is used to execute the application. If omitted, defaults to web.",
+      "type": "string",
+      "enum": [
+        "web", "sparkTODO", "lightningTODO", "netflix", "cobalt", "primevideo", "disneyplus"
+      ]
+    },
+    "config": {
+      "description": "Configuration values to pass to the FNCI runtime. Dictionary[string => string].",
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}

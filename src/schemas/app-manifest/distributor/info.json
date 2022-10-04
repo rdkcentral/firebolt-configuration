@@ -1,0 +1,27 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/info",
+  "title": "Firebolt App Manifest: Distributor Config: Info Config",
+  "description": "distributor.info",
+  "type": "object",
+  "properties": {
+    "appReleaseKey": {
+      "description": "Unique identifier for a specific app version, released to a particular distributor.",
+      "type": "string"
+    },
+    "releaseDate": {
+      "description": "The data when the production release of this app was certified. Required if releaseStatus=released. In ISO8601 format; e.g., '2018-11-13T20:20:39+00:00'",
+      "type": "string",
+      "format": "date-time"
+    },
+    "hostMode": {
+      "description": "@TODO. When appLoadMode=web => [cloud | download. When appLoadMode=legacyWeb => [web]. When appLoadMode=native => [native] - TODO. Post 1.0 and consider changing to a boolean to just represent download for web (not required for native at all).",
+      "type": "string",
+      "enum": [
+        "web", "download", "native"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}

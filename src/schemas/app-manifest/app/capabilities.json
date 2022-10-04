@@ -1,0 +1,71 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/app/capabilities",
+  "title": "Firebolt App Manifest: App Config: Capabilties Config",
+  "description": "app.capabilities",
+  "type": "object",
+  "properties": {
+    "used": {
+      "description": "Capabilities used by the app. If unspecified, the app does not use any capabilities.",
+      "type": "object",
+      "properties": {
+        "required": {
+          "description": "Capabilities used by the app which are considered required. If one or more of these capabilities used by the app are not granted to the app, the app will not run.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        },
+        "optional": {
+          "description": "Capabilities used by the app which are considered optional.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        }
+      }
+    },
+    "managed": {
+      "description": "Capabilities managed by the app. If unspecified, the app does not manage any capabilities.",
+      "type": "object",
+      "properties": {
+        "required": {
+          "description": "Capabilities managed by the app which are considered required. If one or more of these capabilities managed by the app are not granted to the app, the app will not run.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        },
+        "optional": {
+          "description": "Capabilities managed by the app which are considered optional.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        }
+      }
+    },
+    "provided": {
+      "description": "Capabilities provided by the app via Firebolt's provider pattern. If unspecified, the app does not provide any capabilities.",
+      "type": "object",
+      "properties": {
+        "required": {
+          "description": "Capabilities provided by the app which are considered required.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        },
+        "optional": {
+          "description": "Capabilities provided by the app which are considered optional.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}

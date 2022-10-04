@@ -1,0 +1,23 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/catalog",
+  "title": "Firebolt App Manifest: Distributor Config: Catalog Config",
+  "description": "distributor.catalog",
+  "type": "object",
+  "properties": {
+    "enableCloudMetadataInCatalog": {
+      "description": "Whether the app has cloud metadata available, and it should be shown when the app is present in a device’s App Catalog. Aggregated Experience can query this value to know to request cloud metadata for this app. Default: false.",
+      "type": "boolean"
+    },
+    "enableCloudMetadataInLibrary": {
+      "description": "Whether the app has cloud metadata available, and it should be shown when the app is present in a device’s App Library. Aggregated Experience can query this value to know to request cloud metadata for this app. Default: false.",
+      "type": "boolean"
+    },
+    "cloudMetadataCatalogName": {
+      "description": "Catalog name for accessing cloud metadata for the app. Required if enableCloudMetadataInCatalog or enableCloudMetadataInLibrary is true. When using XVP, this is the supportCatalogType value to send to ARS.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}

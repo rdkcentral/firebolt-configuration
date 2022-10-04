@@ -1,0 +1,57 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/app",
+  "title": "Firebolt App Manifest: App Config",
+  "description": "app",
+  "type": "object",
+  "properties": {
+    "info": {
+      "description": "app.info: Basic app information.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/info"
+    },
+    "version": {
+      "description": "app.version: Version-related information.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/version"
+    },
+    "contact": {
+      "description": "app.contact: Contact information.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/contact"
+    },
+    "language": {
+      "description": "app.language: Language-related information.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/language"
+    },
+    "ratings": {
+      "description": "app.ratings: Ratings-related information.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/ratings"
+    },
+    "capabilities": {
+      "description": "app.capabilities: Capabilities used, managed, provided.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/capabilities"
+    },
+    "runtime": {
+      "description": "app.runtime: FCNI to execute app, launch params.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/runtime"
+    },
+    "web": {
+      "description": "app.web: Web app info; for runtime.fnci=web.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/web"
+    },
+    "legacy": {
+      "description": "app.legacy: Legacy app info.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/legacy"
+    },
+    "locations": {
+      "description": "app.locations: Allowed, excluded locations.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/locations"
+    },
+    "signing": {
+      "description": "app.signing: Digital cert + signature.",
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app/signing"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "info", "version", "contact", "language",
+    "ratings", "capabilities", "runtime"
+  ]
+}

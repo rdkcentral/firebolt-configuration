@@ -1,0 +1,27 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/app/version",
+  "title": "Firebolt App Manifest: App Config: Version Config",
+  "description": "app.version",
+  "type": "object",
+  "properties": {
+    "minFireboltInterfaceVersion": {
+      "description": "The minimum Firebolt Interface version an implementation of Firebolt must implement/support for the app to run.",
+      "$ref": "https://meta.comcast.com/firebolt/types#/definitions/SemanticVersion"
+    },
+    "appSoftwareVersion": {
+      "description": "The version of the app software, as determined by the app provider.  The OS must treat version as an opaque string as there are no requirements imparted by the app manifest on the version schema that an app partner uses.",
+      "$ref": "https://meta.comcast.com/firebolt/types#/definitions/SemanticVersion"
+    },
+    "releaseStatus": {
+      "description": "The release status of this application version.",
+      "type": "string",
+      "enum": [
+        "development", "self", "distributor" 
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "minFireboltInterfaceVersion", "appSoftwareVersion"
+  ]
+}

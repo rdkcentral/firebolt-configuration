@@ -1,0 +1,56 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/capabilities",
+  "title": "Firebolt App Manifest: Distributor Config: Capabilties Config",
+  "description": "distributor.capabilities",
+  "type": "object",
+  "properties": {
+    "granted": {
+      "description": "Capabilities granted by the distributor",
+      "type": "object",
+      "properties": {
+        "used": {
+          "description": "Capabilities granted by the distributor for the app to use.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        },
+        "managed": {
+          "description": "Capabilities granted by the distributor for the app to manage.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        },
+        "provided": {
+          "description": "Capabilities granted by the distributor for the app to provide.",
+          "type": "array",
+          "items": {
+            "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+          }
+        }
+      },
+      "required": [
+        "used", "managed", "provided"
+      ]
+    },
+    "userGrants": {
+      "description": "@TODO: Any SUG policy overrides associated with this app. See the Firebolt Capabilities and Permissions spec for details. Set by App Publisher if override applies to all partners.  Set by App Distributor is override applies only to specific partner.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/user_grant_policy"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "granted"
+  ],
+
+  "$defs": {
+    "user_grant_policy": {
+      "description": "@TODO object eventually",
+      "type": "string"
+    }
+  }
+}

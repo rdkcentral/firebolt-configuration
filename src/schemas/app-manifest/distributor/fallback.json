@@ -1,0 +1,18 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/fallback",
+  "title": "Firebolt App Manifest: Distributor Config: Fallback Config",
+  "description": "distributor.fallback",
+  "type": "object",
+  "properties": {
+    "fallbackType": {
+      "description": "@TODO. If the app fails to launch for a supported reason, react accordingly (show error, launch previous version of the app, launch swap app) based on FallbackType. Default: null, which means the Aggregated Experience will either show an error message and/or launch 'the standard' failure-to-launch app. device_sku_not_supported: Current device is excluded due to allowedDeviceSkus or excludeDeviceSkus property. authorization_failed: The App Catalog specifies an authorization server and the authorization attempt failed based on response from the server (not due to networking issue).",
+      "type": "string",
+      "enum": [
+        "@TODO", "device_sku_not_supported", "authorization_failed" 
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}

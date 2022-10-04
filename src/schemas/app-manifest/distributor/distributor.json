@@ -1,0 +1,36 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor",
+  "title": "Firebolt App Manifest: Distributor Config",
+  "description": "distributor",
+  "type": "object",
+  "properties": {
+    "info": {
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/info",
+      "description": "distributor.info: Basic/core settings about the app on the distributor's platform."
+    },
+    "capabilities": {
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/capabilities",
+      "description": "distributor.capabilities: Capabilities-related settings: granted capabilities and secure user grant overrides."
+    },
+    "catalog": {
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/catalog",
+      "description": "distributor.catalog: Optional settings to control whether the app has cloud metadata available, and which should be used, and, if so, the name of the catalog."
+    },
+    "fallback": {
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/fallback",
+      "description": "distributor.fallback: Optional settings to control what should happen if the app can't launch."
+    },
+    "deviceSkus": {
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/deviceSkus",
+      "description": "distributor.deviceSkus: Optional allowed and/or excluded Device SKUs to control the subset of devices upon which the app may run."
+    },
+    "signing": {
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/signing",
+      "description": "distributor.signing: Digital cert + signature. Mandatory for production apps. Optional when developing apps and side loading them onto a device."
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "info", "capabilities"
+  ]
+}

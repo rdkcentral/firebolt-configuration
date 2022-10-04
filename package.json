@@ -1,0 +1,27 @@
+{
+  "name": "@firebolt-js/configurations",
+  "version": "0.1.0",
+  "description": "Firebolt configurations",
+  "files": [
+    "src/schemas/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rdkcentral/firebolt-configurations.git"
+  },
+  "scripts": {
+    "validate": "firebolt-openrpc --task validate --source src --shared-schemas node_modules/@firebolt-js/schemas/src/schemas/"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rdkcentral/firebolt-configurations/issues"
+  },
+  "homepage": "https://github.com/rdkcentral/firebolt-configurations#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@firebolt-js/openrpc": "git://github.com/rdkcentral/firebolt-openrpc.git",
+    "@firebolt-js/schemas": "git://github.com/rdkcentral/firebolt-schemas.git#bumblebee"
+  }
+}

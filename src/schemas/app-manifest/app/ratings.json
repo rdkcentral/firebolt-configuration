@@ -1,0 +1,18 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/app/ratings",
+  "title": "Firebolt App Manifest: App Config: Ratings Config",
+  "description": "app.ratings",
+  "type": "object",
+  "properties": {
+    "rating": {
+      "description": "The rating of the app and its content. See https://www.esrb.org/ratings-guide/.",
+      "type": "string",
+      "enum": [
+        "everyone", "everyone_ten_plus", "teen", "mature", "adult", "rating_pending", "rating_pending_likely_mature" 
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}
