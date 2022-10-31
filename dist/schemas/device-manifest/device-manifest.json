@@ -1,0 +1,503 @@
+{
+	"$id": "https://meta.rdkcentral.com/firebolt/device-manifest",
+	"title": "Firebolt Manifest",
+	"description": "A Firebolt application manifest file",
+	"type": "object",
+	"properties": {
+		"schemaVersion": {
+			"$ref": "https://meta.comcast.com/firebolt/types#/definitions/SemanticVersion",
+			"description": "The schema version number for the application manifest file"
+		},
+		"configuration": {
+			"type": "object",
+			"description": "Implementation-specific configuration",
+			"required": [
+				"schema"
+			],
+			"properties": {
+				"schema": {
+					"type": "string",
+					"description": "schema to validate configuration."
+				}
+			},
+			"additionalProperties": true
+		},
+		"capabilities": {
+			"description": "A Firebolt capabilities manifest",
+			"title": "Capabilities Manifest",
+			"type": "object",
+			"properties": {
+				"supported": {
+					"allOf": [
+						{
+							"type": "array",
+							"items": {
+								"$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
+							}
+						},
+						{
+							"$ref": "https://meta.rdkcentral.com/firebolt/device-manifest#/definitions/AllMustCapabilities"
+						}
+					]
+				},
+				"grantPolicies": {
+					"allOf": [
+						{
+							"type": "object",
+							"patternProperties": {
+								"^xrn:firebolt:capability:[a-zA-Z0-9\\-]{1,32}:[a-zA-Z0-9\\-]{1,32}$": {
+									"type": "object",
+									"properties": {
+										"use": {
+											"$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+										},
+										"manage": {
+											"$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+										},
+										"provide": {
+											"$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+										}
+									}
+								}
+							}
+						},
+						{
+							"$ref": "https://meta.rdkcentral.com/firebolt/device-manifest#/definitions/GrantPolicyOverrides"
+						}
+					]
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"supported"
+			]
+		},
+		"lifecycle": {
+			"description": "The Lifecycle configuration for this device.",
+			"title": "Lifecycle Configuration",
+			"type": "object",
+			"properties": {
+				"appReadyTimeoutMs": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 60000
+				},
+				"appFinishedTimeoutMs": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 60000
+				},
+				"maxLoadedApps": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 32768
+				},
+				"minAvailableMemoryKb": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"prioritized": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"appReadyTimeoutMs",
+				"appFinishedTimeoutMs",
+				"maxLoadedApps",
+				"minAvailableMemoryKb",
+				"prioritized"
+			]
+		},
+		"applications": {
+			"description": "The Apps configuration for this device.",
+			"title": "Apps Configuration",
+			"type": "object",
+			"properties": {
+				"distribution": {
+					"type": "object",
+					"properties": {
+						"endpoint": {
+							"type": "string",
+							"pattern": "^[a-z]+://.*$"
+						}
+					}
+				},
+				"defaults": {
+					"type": "object",
+					"properties": {
+						"xrn:firebolt:application-type:main": {
+							"type": "string"
+						},
+						"xrn:firebolt:application-type:settings": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"xrn:firebolt:application-type:main",
+						"xrn:firebolt:application-type:settings"
+					]
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"distribution",
+				"defaults"
+			]
+		}
+	},
+	"additionalProperties": false,
+	"required": [
+		"schemaVersion",
+		"capabilities"
+	],
+	"definitions": {
+		"AllMustCapabilities": {
+			"allOf": [
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:accessory:pair"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:account:id"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:account:uid"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:advertising:configuration"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:approve:content"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:approve:purchase"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:capabilities:inspection"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:capabilities:request"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:developer:tools"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:device:distributor"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:device:id"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:device:info"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:device:make"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:device:model"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:device:name"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:device:sku"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:device:uid"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:discovery:entitlements"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:discovery:entity-info"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:discovery:navigate-to"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:discovery:policy"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:discovery:purchased-content"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:discovery:sign-in-status"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:discovery:watch-next"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:discovery:watched"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:input:keyboard"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:lifecycle:initialize"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:lifecycle:launch"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:lifecycle:ready"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:lifecycle:state"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:localization:country-code"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:localization:language"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:localization:locale"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:localization:locality"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:localization:location"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:localization:postal-code"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:metrics:general"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:metrics:media"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:network:status"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:power:inactivity"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:power:state"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:privacy:advertising"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:privacy:content"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:profile:flags"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:protocol:dial"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:protocol:wifi"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:settings:closedcaptions"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:settings:device"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:settings:voiceguidance"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:system:message"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:token:device"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:token:platform"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:token:root"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:token:session"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:usergrant:acknowledgechallenge"
+					}
+				},
+				{
+					"type": "array",
+					"contains": {
+						"const": "xrn:firebolt:capability:usergrant:pinchallenge"
+					}
+				}
+			]
+		},
+		"GrantPolicyOverrides": {
+			"type": "object",
+			"properties": {}
+		}
+	}
+}

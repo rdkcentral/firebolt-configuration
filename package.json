@@ -10,7 +10,16 @@
     "url": "git+https://github.com/rdkcentral/firebolt-configurations.git"
   },
   "scripts": {
-    "validate": "firebolt-openrpc --task validate --source src --shared-schemas node_modules/@firebolt-js/schemas/src/schemas/"
+    "build": "npm run build:version && npm run build:device",
+    "validate": "npm run validate:version && npm run validate:device",
+    "capabilities:clear": "node ./src/js/capabilities/index.mjs -t ./src/json/firebolt.json -o clear",
+    "capabilities:import": "node ./src/js/capabilities/index.mjs -t ./src/json/firebolt.json -o import",
+    "capabilities:add": "node ./src/js/capabilities/index.mjs -t ./src/json/firebolt.json -o add",
+    "capabilities:report": "node ./src/js/capabilities/index.mjs -t ./src/json/firebolt.json -o report",
+    "build:version": "node ./src/js/merge/index.mjs -i ./src/schemas/version-manifest/version-manifest.json -o ./dist/schemas/version-manifest/version-manifest.json",
+    "build:device": "node ./src/js/merge/index.mjs -i ./src/schemas/device-manifest/device-manifest.json -o ./dist/schemas/device-manifest/device-manifest.json",
+    "validate:version": "node ./src/js/validate/index.mjs -s ./dist/schemas/version-manifest/version-manifest.json -i ./src/json/firebolt.json -ss ./node_modules/@firebolt-js/schemas/src/schemas",
+    "validate:device": "node ./src/js/validate/index.mjs -s ./dist/schemas/device-manifest/device-manifest.json -i ./src/json/devices/reference.json -ss ./node_modules/@firebolt-js/schemas/src/schemas"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -18,10 +27,14 @@
     "url": "https://github.com/rdkcentral/firebolt-configurations/issues"
   },
   "homepage": "https://github.com/rdkcentral/firebolt-configurations#readme",
-  "dependencies": {
-  },
   "devDependencies": {
-    "@firebolt-js/openrpc": "git://github.com/rdkcentral/firebolt-openrpc.git",
-    "@firebolt-js/schemas": "git://github.com/rdkcentral/firebolt-schemas.git#bumblebee"
+    "@firebolt-js/manage-sdk": "../firebolt-manage-sdk",
+    "@firebolt-js/openrpc": "^1.7.0-next.3",
+    "@firebolt-js/schemas": "^0.5.0-next.0",
+    "@firebolt-js/sdk": "../firebolt-core-sdk",
+    "ajv": "^8.3.0",
+    "ajv-formats": "^2.1.0",
+    "nopt": "^6.0.0",
+    "path": "^0.12.7"
   }
 }

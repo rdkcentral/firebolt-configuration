@@ -1,0 +1,43 @@
+{
+    "$id": "https://meta.rdkcentral.com/firebolt/device-manifest/lifecycle",
+    "title": "Lifecycle Configuration",
+    "type": "object",
+    "properties": {
+        "appReadyTimeoutMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 60000
+        },
+        "appFinishedTimeoutMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 60000
+        },
+        "maxLoadedApps": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 32768
+        },
+        "minAvailableMemoryKb": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "prioritized": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "appReadyTimeoutMs",
+        "appFinishedTimeoutMs",
+        "maxLoadedApps",
+        "minAvailableMemoryKb",
+        "prioritized"
+    ],
+    "definitions": {
+    }
+  }
+  

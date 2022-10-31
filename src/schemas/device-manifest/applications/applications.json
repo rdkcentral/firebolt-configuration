@@ -1,0 +1,39 @@
+  {
+    "$id": "https://meta.rdkcentral.com/firebolt/device-manifest/applications",
+    "title": "Apps Configuration",
+    "type": "object",
+    "properties": {
+        "distribution": {
+            "type": "object",
+            "properties": {
+                "endpoint": {
+                    "type": "string",
+                    "pattern": "^[a-z]+:\/\/.*$"
+                }
+            }
+        },
+        "defaults": {
+            "type": "object",
+            "properties": {
+                "xrn:firebolt:application-type:main": {
+                    "type": "string"
+                },
+                "xrn:firebolt:application-type:settings": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "xrn:firebolt:application-type:main",
+                "xrn:firebolt:application-type:settings"
+            ]
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "distribution",
+        "defaults"
+    ],
+    "definitions": {
+    }
+  }
+  
