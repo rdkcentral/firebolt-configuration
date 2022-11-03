@@ -10,14 +10,12 @@ const { readFile, writeFile } = promises
 const knownOpts = {
     'operation': [String],
     'source': [path],
-    'target': [path],
-    'shared-schemas': [path]
+    'target': [path]
 }
 const shortHands = {
     'o': '--operation',
     's': '--source',
-    't': '--target',
-    'ss': '--shared-schemas'
+    't': '--target'
 }
 // Last 2 arguments are the defaults.
 const parsedArgs = nopt(knownOpts, shortHands, process.argv, 2)

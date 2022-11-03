@@ -1,0 +1,14 @@
+{
+    "$id": "https://meta.rdkcentral.com/firebolt/version-manifest/apis",
+    "title": "API Version Manifest",
+    "description": "A Firebolt api version manifest",
+    "type": "object",
+    "patternProperties": {
+        "^[0-9]+$": {
+            "$ref": "https://meta.open-rpc.org",
+            "description": "The latest full RPC API for specified major Firebolt version."
+        }
+    },
+    "additionalProperties": false
+}
+  

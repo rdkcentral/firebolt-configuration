@@ -6,7 +6,11 @@
         "distribution": {
             "type": "object",
             "properties": {
-                "endpoint": {
+                "library": {
+                    "type": "string",
+                    "pattern": "^[a-z]+:\/\/.*$"
+                },
+                "catalog": {
                     "type": "string",
                     "pattern": "^[a-z]+:\/\/.*$"
                 }
