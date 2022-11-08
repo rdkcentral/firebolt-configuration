@@ -70,6 +70,6 @@ if (generated.definitions && !target.definitions) {
 }
 Object.assign(target.definitions, generated.definitions)
 
-await writeFile(parsedArgs.output, JSON.stringify(target, null, '\t'))
+await writeFile(parsedArgs.output, JSON.stringify(target, null, '  '))
 
 signOff()

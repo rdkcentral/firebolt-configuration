@@ -64,6 +64,6 @@ const loadJsonTree = async file => {
 
 const merged = await loadJsonTree(parsedArgs.input)
 
-await writeFile(parsedArgs.output, JSON.stringify(merged, null, '\t'))
+await writeFile(parsedArgs.output, JSON.stringify(merged, null, '  '))
 
 signOff()

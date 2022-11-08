@@ -8,11 +8,13 @@ import { promises } from "fs"
 const { readFile, writeFile } = promises
 
 const knownOpts = {
-  'operation': [String, null],
+  'mode': [String, null],
+  'source': [String, null],
   'target': [String, null]
 }
 const shortHands = {
-  'o': '--operation',
+  'm': '--mode',
+  's': '--source',
   't': '--target'
 }
 
@@ -273,24 +275,24 @@ const mergeRpc = (sdks, verbose=false) => {
     return result
 }
 
-const version = await loadJson(parsedArgs.target)
+const version = await loadJson(parsedArgs.source)
 const core = await loadJson('./node_modules/@firebolt-js/sdk/dist/firebolt-open-rpc.json')
 const manage = await loadJson('./node_modules/@firebolt-js/manage-sdk/dist/firebolt-manage-open-rpc.json')
 
 let write = false
 let verbose = false
 
-if (parsedArgs.operation === 'report') {
+if (parsedArgs.mode === 'report') {
     verbose = true
 }
-else if (parsedArgs.operation === 'clear') {
+else if (parsedArgs.mode === 'clear') {
     version.apis = {}
     write = true
 }
 
 const rpc = mergeRpc([core, manage], verbose)
 
-if (parsedArgs.operation === 'import') {
+if (parsedArgs.mode === 'import') {
     const major = core.info.version.split(".").shift()
     version.apis = version.apis || {}
     version.apis[major] = rpc
@@ -298,7 +300,7 @@ if (parsedArgs.operation === 'import') {
 }
 
 if (write) {
-    await writeFile(parsedArgs.target, JSON.stringify(version, null, '\t'))
+    await writeFile(parsedArgs.target, JSON.stringify(version, null, '  '))
 }
 
 signOff()

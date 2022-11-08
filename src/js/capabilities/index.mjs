@@ -8,12 +8,12 @@ import { logHeader, logSuccess, logInfo, logError } from '../../../node_modules/
 const { readFile, writeFile } = promises
 
 const knownOpts = {
-    'operation': [String],
+    'mode': [String],
     'source': [path],
     'target': [path]
 }
 const shortHands = {
-    'o': '--operation',
+    'm': '--mode',
     's': '--source',
     't': '--target'
 }
@@ -119,29 +119,29 @@ const doImport = (sources, target, clear=false, report=false) => {
 
 const core = await loadJson('./node_modules/@firebolt-js/sdk/dist/firebolt-open-rpc.json')
 const manage = await loadJson('./node_modules/@firebolt-js/manage-sdk/dist/firebolt-manage-open-rpc.json')
-const target = await loadJson(parsedArgs.target)
+const version = await loadJson(parsedArgs.source)
 const sdks = [core, manage]
 let clear = false
 let write = false
 let report = false
 
-if (parsedArgs.operation === 'clear') {
+if (parsedArgs.mode === 'clear') {
     while (sdks.length) sdks.pop()
     clear = true
     write = true
 }
-else if (parsedArgs.operation === 'import') {
+else if (parsedArgs.mode === 'import') {
     clear = true
     write = true
 }
-else if (parsedArgs.operation === 'report') {
+else if (parsedArgs.mode === 'report') {
     write = false
     report = true
 }
 
-logHeader(`Capabilities - Running ${parsedArgs.operation}`)
+logHeader(`Capabilities - Running ${parsedArgs.mode}`)
 
-const result = JSON.stringify(doImport(sdks, target, clear, report), null, '\t')
+const result = JSON.stringify(doImport(sdks, version, clear, report), null, '  ')
 
 if (write) {
     const rl = readline.createInterface({
