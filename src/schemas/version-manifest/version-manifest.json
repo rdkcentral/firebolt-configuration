@@ -1,0 +1,29 @@
+{
+    "$id": "https://meta.rdkcentral.com/firebolt/version-manifest",
+    "title": "Firebolt Version Manifest",
+    "description": "A manifest of all Capabilities and default policies for Firebolt",
+    "type": "object",
+    "properties": {
+      "schemaVersion": {
+        "$ref": "https://meta.comcast.com/firebolt/types#/definitions/SemanticVersion",
+        "description": "The schema version number for the version manifest file"
+      },
+      "version": {
+        "$ref": "https://meta.comcast.com/firebolt/types#/definitions/SemanticVersion",
+        "description": "Firebolt Version"
+      },
+      "capabilities": {
+        "$ref": "https://meta.rdkcentral.com/firebolt/version-manifest/capabilities",
+        "description": "The Capabilities this version supports, and their default configurations."
+      },
+      "apis": {
+        "$ref": "https://meta.rdkcentral.com/firebolt/version-manifest/apis",
+        "description": "The major Firebolt API versions that this version supports including the current and backwards compatible APIs."
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "schemaVersion", "capabilities"
+    ]
+  }
+  

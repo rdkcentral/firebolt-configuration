@@ -1,0 +1,22 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/app/web",
+  "title": "Firebolt App Manifest: App Config: Web Config",
+  "description": "app.web",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "description": "The origin of the App Bundle (including App Manifest). This allows the OS confirm that the App Manifest has not been borrowed by an imposter. Origin is defined per the WHATWG spec. See also the MDN definition. Note that this includes schema and port!",
+      "type": "string",
+      "maxLength": 1028
+    },
+    "url": {
+      "description": "The URL to the app’s HTML 'start page.' May be relative to the app manifest file’s location. Required for runtime=web and runtime=cobalt.",
+      "type": "string",
+      "maxLength": 1028
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "origin", "url"
+  ]
+}

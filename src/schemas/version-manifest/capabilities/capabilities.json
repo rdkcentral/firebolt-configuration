@@ -1,0 +1,95 @@
+{
+    "$id": "https://meta.rdkcentral.com/firebolt/version-manifest/capabilities",
+    "title": "Capabilities Manifest",
+    "description": "A Firebolt capabilities manifest",
+    "type": "object",
+    "patternProperties": {
+        "^xrn:firebolt:capability:[a-zA-Z0-9\\-]{1,32}:[a-zA-Z0-9\\-]{1,32}$": {
+            "$ref": "#/definitions/CapabilityPolicy"
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "CapabilityPolicy": {
+            "type": "object",
+            "required": [
+                "level",
+                "use",
+                "manage",
+                "provide"
+            ],
+            "properties": {
+                "level": {
+                    "type": "string",
+                    "enum": [
+                        "must",
+                        "should",
+                        "could"
+                    ]
+                },
+                "use": {
+                    "$ref": "#/definitions/PermissionPolicy"
+                },
+                "manage": {
+                    "$ref": "#/definitions/PermissionPolicy"
+                },
+                "provide": {
+                    "$ref": "#/definitions/PermissionPolicy"
+                }
+            },
+            "additionalProperties": false
+        },
+        "PermissionPolicy": {
+            "type": "object",
+            "required": [
+                "public",
+                "negotiable"
+            ],
+            "properties": {
+                "public": {
+                    "type": "boolean"
+                },
+                "negotiable": {
+                    "type": "boolean"
+                },
+                "grantPolicy": {
+                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+                }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+                {
+                    "properties": {
+                        "public": {
+                            "const": true
+                        },
+                        "negotiable": {
+                            "const": true
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "public": {
+                            "const": true
+                        },
+                        "negotiable": {
+                            "const": false
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "public": {
+                            "const": false
+                        },
+                        "negotiable": {
+                            "const": false
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
+  

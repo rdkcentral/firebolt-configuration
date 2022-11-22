@@ -1,0 +1,24 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest",
+  "title": "Firebolt Manifest",
+  "description": "A Firebolt application manifest file",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "$ref": "https://meta.comcast.com/firebolt/types#/definitions/SemanticVersion",
+      "description": "The schema version number for the application manifest file"
+    },
+    "app": {
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/app",
+      "description": "app"
+    },
+    "distributor": {
+      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor",
+      "description": "distributor"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "app"
+  ]
+}

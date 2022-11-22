@@ -1,0 +1,57 @@
+{
+	"schemaVersion": {
+		"major": 1,
+		"minor": 0,
+		"patch": 0,
+		"readable": "Firebolt Version Manifest v1.0.0"
+	},
+	"capabilities": {
+		"xrn:firebolt:capability:lifecycle:initialize": {
+			"level": "must",
+			"use": {
+				"public": true,
+				"negotiable": false
+			},
+			"manage": {
+				"public": false,
+				"negotiable": false
+			},
+			"provide": {
+				"public": false,
+				"negotiable": false
+			}
+		},
+		"xrn:firebolt:capability:lifecycle:ready": {
+			"level": "must",
+			"use": {
+				"public": true,
+				"negotiable": false
+			},
+			"manage": {
+				"public": false,
+				"negotiable": false
+			},
+			"provide": {
+				"public": false,
+				"negotiable": false
+			}
+		},
+		"xrn:firebolt:capability:lifecycle:state": {
+			"level": "must",
+			"use": {
+				"public": true,
+				"negotiable": false
+			},
+			"manage": {
+				"public": true,
+				"negotiable": true
+			},
+			"provide": {
+				"public": true,
+				"negotiable": true
+			}
+		}
+	},
+	"apis": {
+	}
+}

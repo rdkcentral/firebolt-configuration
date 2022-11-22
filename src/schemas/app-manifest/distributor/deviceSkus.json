@@ -1,0 +1,25 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/deviceSkus",
+  "title": "Firebolt App Manifest: Distributor Config: Device SKUs Config",
+  "description": "distributor.deviceSkus",
+  "type": "object",
+  "properties": {
+    "allowed": {
+      "description": "Array of device SKUs – If specified, the app may only execute on the defined Device SKUs.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "disallowed": {
+      "description": "Array of device SKUs – If specified, the app may not execute on the defined Device SKUs. If a device SKU is somehow on both the allowed list and excluded list, the excluded list “wins”; the app should not execute on the Device SKU.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}

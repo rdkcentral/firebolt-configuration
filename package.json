@@ -1,0 +1,46 @@
+{
+  "name": "@firebolt-js/configurations",
+  "version": "0.1.0",
+  "description": "Firebolt configurations",
+  "files": [
+    "src/schemas/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rdkcentral/firebolt-configurations.git"
+  },
+  "scripts": {
+    "prepare": "mkdir -p dist/schemas/app-manifest dist/schemas/device-manifest dist/schemas/version-manifest dist/json",
+    "merge": "npm run merge:app && npm run merge:version && npm run merge:device",
+    "build": "npm run build:version && npm run build:device && npm run build:app",
+    "validate": "npm run validate:version && npm run validate:device",
+    "apis:import": "node ./src/js/apis/index.mjs -s ./src/json/firebolt.json -t ./dist/json/firebolt.json -m import",
+    "apis:report": "node ./src/js/apis/index.mjs -s ./dist/json/firebolt.json -m report",
+    "capabilities:add": "node ./src/js/capabilities/index.mjs  -s ./dist/json/firebolt.json -t ./dist/json/firebolt.json -m add",
+    "capabilities:report": "node ./src/js/capabilities/index.mjs -s ./dist/json/firebolt.json -m report",
+    "merge:app": "node ./src/js/merge/index.mjs -i ./src/schemas/app-manifest/app-manifest.json -o ./dist/schemas/app-manifest/app-manifest.json",
+    "merge:version": "node ./src/js/merge/index.mjs -i ./src/schemas/version-manifest/version-manifest.json -o ./dist/schemas/version-manifest/version-manifest.json",
+    "merge:device": "node ./src/js/merge/index.mjs -i ./src/schemas/device-manifest/device-manifest.json -o ./dist/schemas/device-manifest/device-manifest.json",
+    "build:app": "npm run merge:app",
+    "build:version": "npm run merge:version && npm run apis:import && npm run capabilities:add",
+    "build:device": "npm run merge:device && node ./src/js/device/index.mjs -i ./dist/schemas/device-manifest/device-manifest.json -o ./dist/schemas/device-manifest/device-manifest.json",
+    "validate:version": "node ./src/js/validate/index.mjs -s ./dist/schemas/version-manifest/version-manifest.json -i ./dist/json/firebolt.json -ss ./node_modules/@firebolt-js/schemas/src/schemas",
+    "validate:device": "node ./src/js/validate/index.mjs -s ./dist/schemas/device-manifest/device-manifest.json -i ./src/json/devices/reference.json -ss ./node_modules/@firebolt-js/schemas/src/schemas"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rdkcentral/firebolt-configurations/issues"
+  },
+  "homepage": "https://github.com/rdkcentral/firebolt-configurations#readme",
+  "devDependencies": {
+    "@firebolt-js/manage-sdk": "git://github.com/rdkcentral/firebolt-manage-sdk.git",
+    "@firebolt-js/openrpc": "^1.7.0",
+    "@firebolt-js/schemas": "^0.5.0",
+    "@firebolt-js/sdk": "^0.9.0",
+    "ajv": "^8.3.0",
+    "ajv-formats": "^2.1.0",
+    "nopt": "^6.0.0",
+    "path": "^0.12.7"
+  }
+}

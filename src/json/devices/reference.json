@@ -1,0 +1,87 @@
+{
+    "schemaVersion": {
+        "major": 1,
+        "minor": 0,
+        "patch": 0,
+        "readable": "Firebolt Device Manifest v1.0.0"
+    },
+    "capabilities": {
+        "supported": [
+            "xrn:firebolt:capability:lifecycle:state",
+            "xrn:firebolt:capability:discovery:watched"
+        ],
+        "grantPolicies": {
+            "xrn:firebolt:capability:accessory:pair": {
+                "use": {
+                    "options": [
+                        {
+                            "steps": [
+                                {
+                                    "capability": "xrn:firebolt:capability:usergrant:acknowledge"
+                                }
+                            ]
+                        }
+                    ],
+                    "scope": "app",
+                    "lifespan": "forever",
+                    "privacySetting": {
+                        "property": "Privacy.shareWatchHistory",
+                        "allowValue": true,
+                        "updateProperty": true,
+                        "autoGrantIfAllowed": false,
+                        "revokeGrantsOnDeny": false
+                    },
+                    "overridable": true                    
+                }
+            }
+        }
+    },    
+    "configuration": {
+        "schema": "<add schema path here...>",
+        "api": {
+            "gateway": "ws://0.0.0.0/"
+        },
+        "hal": {
+            "gateway": "ws://127.0.0.1:9998/jsonrpc"
+        },
+        "applications": {
+            "delegatedAppLaunching": true
+        },
+        "device": {
+            "models": {
+                "SCXI11AIC": {
+                    "name": "XiOne",
+                    "type": "ipstb"
+                },
+                "SCXI11ADS": {
+                    "name": "XiOne",
+                    "type": "ipstb"
+                },
+                "SCXI11BEI": {
+                    "name": "XiOne-SCB",
+                    "type": "ipstb"
+                }
+            }
+        }
+    },
+    "lifecycle": {
+        "appReadyTimeoutMs": 30000,
+        "appFinishedTimeoutMs": 2000,
+        "maxLoadedApps": 5,
+        "minAvailableMemoryKb": 1024,
+        "prioritized": [
+            "root",
+            "refui"
+        ]
+    },
+    "applications": {
+        "distribution": {
+            "catalog": "https://distribution.com/asdlfkj",
+            "library": "file:///distribution/library"
+        },
+        "defaults": {
+            "xrn:firebolt:application-type:main": "<epgAppId>",
+            "xrn:firebolt:application-type:settings": "<settingsAppId>"
+        }
+    }
+}

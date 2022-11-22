@@ -1,0 +1,41 @@
+{
+    "$id": "https://meta.rdkcentral.com/firebolt/device-manifest",
+    "title": "Firebolt Manifest",
+    "description": "A Firebolt application manifest file",
+    "type": "object",
+    "properties": {
+      "schemaVersion": {
+        "$ref": "https://meta.comcast.com/firebolt/types#/definitions/SemanticVersion",
+        "description": "The schema version number for the application manifest file"
+      },
+      "configuration": {
+        "type": "object",
+        "description": "Implementation-specific configuration",
+        "required": ["schema"],
+        "properties": {
+          "schema": {
+            "type": "string",
+            "description": "schema to validate configuration."
+          }
+        },
+        "additionalProperties": true
+      },
+      "capabilities": {
+        "$ref": "https://meta.rdkcentral.com/firebolt/device-manifest/capabilities",
+        "description": "The Capabilities this device supports, and their configurations."
+      },
+      "lifecycle": {
+        "$ref": "https://meta.rdkcentral.com/firebolt/device-manifest/lifecycle",
+        "description": "The Lifecycle configuration for this device."
+      },
+      "applications": {
+        "$ref": "https://meta.rdkcentral.com/firebolt/device-manifest/applications",
+        "description": "The Apps configuration for this device."
+      }
+  },
+    "additionalProperties": false,
+    "required": [
+      "schemaVersion", "capabilities"
+    ]
+  }
+  

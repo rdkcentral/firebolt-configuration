@@ -1,0 +1,19 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/app/signing",
+  "title": "Firebolt App Manifest: App Config: Signing Config",
+  "description": "app.signing",
+  "type": "object",
+  "properties": {
+    "cert": {
+      "description": "X.509 certificate of the App Publisher.",
+      "type": "string"
+    },
+    "signature": {
+      "description": "Signature over digest of the app object excluding app.signing. This is required if releaseStatus=selfReleased or distributorReleased.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}

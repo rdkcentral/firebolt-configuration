@@ -1,0 +1,25 @@
+{
+  "$id": "https://meta.rdkcentral.com/firebolt/app-manifest/app/locations",
+  "title": "Firebolt App Manifest: App Config: Locations Config",
+  "description": "app.locations",
+  "type": "object",
+  "properties": {
+    "allowed": {
+      "description": "Array of codes – entries must be prefixed by country: Country codes must be ISO 3166 compliant. If specified, the app may only execute in the given locations. If not supplied Firebolt will NOT geo-fence app launch.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "disallowed": {
+      "description": "Array of codes – entries must be prefixed by country: Country codes must be ISO 3166 compliant. If specified, the app may not execute in the given locations. If a location is somehow on both the allowed list and disallowed list, the excluded list 'wins'; the app should not execute in the location.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}
