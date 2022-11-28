@@ -148,7 +148,7 @@ if (parsedArgs.mode === 'clear') {
     write = true
 }
 else if (parsedArgs.mode === 'add') {
-    clear = true
+    clear = false
     write = true
 }
 else if (parsedArgs.mode === 'report') {
