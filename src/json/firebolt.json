@@ -50,7 +50,82 @@
 				"public": true,
 				"negotiable": true
 			}
-		}
+		},
+    "xrn:firebolt:capability:advertising:configuration": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:accessory:pair": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:account:id": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:advertising:identifier": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:developer:tools": {
+      "level": "should"
+    },
+    "xrn:firebolt:capability:discovery:availabilities": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:discovery:entitlements": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:discovery:sign-in-status": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:discovery:watch-next": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:discovery:watched": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:input:keyboard": {
+      "level": "should"
+    },
+    "xrn:firebolt:capability:localization:locality": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:localization:location": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:localization:postal-code": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:power:inactivity": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:localization:postal-code": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:protocol:dial": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:protocol:wifi": {
+      "level": "could"
+    },
+    "xrn:firebolt:capability:system:message": {
+      "level": "should"
+    },
+    "xrn:firebolt:capability:token:device": {
+      "level": "should"
+    },
+    "xrn:firebolt:capability:token:platform": {
+      "level": "should"
+    },
+    "xrn:firebolt:capability:token:root": {
+      "level": "should"
+    },
+    "xrn:firebolt:capability:token:session": {
+      "level": "should"
+    },
+    "xrn:firebolt:capability:usergrant:acknowledgechallenge": {
+      "level": "should"
+    },
+    "xrn:firebolt:capability:usergrant:pinchallenge": {
+      "level": "should"
+    }
 	},
 	"apis": {
 	}

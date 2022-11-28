@@ -63,38 +63,36 @@ const doImport = (sources, target, clear=false, report=false) => {
     const all = Array.from(new Set(uses.concat(manages).concat(provides))).sort()
 
     all.forEach(capability => {
-        if (!result.capabilities[capability]) {
-            logSuccess(` - ${report ? 'Missing' : 'Adding'} capability ${capability}.`)
-            result.capabilities[capability] = {
-                level: 'must',
-                use: {
-                    public: uses.includes(capability),
-                    negotiable: true && uses.includes(capability)
-                },
-                manage: {
-                    public: manages.includes(capability),
-                    negotiable: true && manages.includes(capability)
-                },
-                provide: {
-                    public: provides.includes(capability),
-                    negotiable: true && provides.includes(capability)
-                }
-            }
-        }
-        else {
-            if (uses.includes(capability) != result.capabilities[capability].use.public) {
-                logSuccess(` - ${report ? 'Incorrect' : 'Setting'} use.public: ${uses.includes(capability)} for ${capability}.`)
-                result.capabilities[capability].use.public = uses.includes(capability)
-            }
-            if (manages.includes(capability) != result.capabilities[capability].manage.public) {
-                logSuccess(` - ${report ? 'Incorrect' : 'Setting'} manage.public: ${manages.includes(capability)} for ${capability}.`)
-                result.capabilities[capability].manage.public = manages.includes(capability)
-            }
-            if (provides.includes(capability) != result.capabilities[capability].provide.public) {
-                logSuccess(` - ${report ? 'Incorrect' : 'Setting'} provides.public: ${provides.includes(capability)} for ${capability}.`)
-                result.capabilities[capability].provide.public = provides.includes(capability)
-            }
-        }
+      if (!result.capabilities[capability]) {
+          logSuccess(` - ${report ? 'Missing' : 'Adding'} capability ${capability}.`)
+      }
+      result.capabilities[capability] = Object.assign({
+          level: 'must',
+          use: {
+              public: uses.includes(capability),
+              negotiable: true && uses.includes(capability)
+          },
+          manage: {
+              public: manages.includes(capability),
+              negotiable: true && manages.includes(capability)
+          },
+          provide: {
+              public: provides.includes(capability),
+              negotiable: true && provides.includes(capability)
+          }
+      }, result.capabilities[capability] || {})
+      if (uses.includes(capability) != result.capabilities[capability].use.public) {
+          logSuccess(` - ${report ? 'Incorrect' : 'Setting'} use.public: ${uses.includes(capability)} for ${capability}.`)
+          result.capabilities[capability].use.public = uses.includes(capability)
+      }
+      if (manages.includes(capability) != result.capabilities[capability].manage.public) {
+          logSuccess(` - ${report ? 'Incorrect' : 'Setting'} manage.public: ${manages.includes(capability)} for ${capability}.`)
+          result.capabilities[capability].manage.public = manages.includes(capability)
+      }
+      if (provides.includes(capability) != result.capabilities[capability].provide.public) {
+          logSuccess(` - ${report ? 'Incorrect' : 'Setting'} provides.public: ${provides.includes(capability)} for ${capability}.`)
+          result.capabilities[capability].provide.public = provides.includes(capability)
+      }
     })
 
     if (report) {
@@ -161,27 +159,9 @@ logHeader(`Capabilities - Running ${parsedArgs.mode}`)
 const result = JSON.stringify(doImport(sdks, version, clear, report), null, '  ')
 
 if (write) {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    let confirm = false
-    rl.question(`\nModify ${parsedArgs.target}? [y/n]: `, function (answer) {
-        if (answer.toLowerCase().startsWith('y')) {
-            console.log('setting your answer to true')
-            confirm = true
-        }
-        rl.close()
-    })
-
-    rl.on('close', async function () {
-        if (confirm) {
-            await writeFile(parsedArgs.target, result)
-        }
-        signOff()
-        process.exit(0);
-    });
+  await writeFile(parsedArgs.target, result)
+  signOff()
+  process.exit(0);
 }
 else {
     signOff()

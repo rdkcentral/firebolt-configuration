@@ -79,7 +79,7 @@ const generate = async (jsonFile) => {
     return schema
 }
 
-const generated = await generate('./src/json/firebolt.json')
+const generated = await generate('./dist/json/firebolt.json')
 const target = await loadJson(parsedArgs.input)
 
 if (generated.definitions && !target.definitions) {
