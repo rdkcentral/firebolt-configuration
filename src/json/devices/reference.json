@@ -1,117 +1,117 @@
 {
-    "schemaVersion": {
-        "major": 1,
-        "minor": 0,
-        "patch": 0,
-        "readable": "Firebolt Device Manifest v1.0.0"
-    },
-    "capabilities": {
-        "supported": [
-            "xrn:firebolt:capability:lifecycle:state",
-            "xrn:firebolt:capability:lifecycle:initialize",
-            "xrn:firebolt:capability:lifecycle:ready",
-            "xrn:firebolt:capability:discovery:watched",
-            "xrn:firebolt:capability:accessibility:closedcaptions",
-            "xrn:firebolt:capability:accessibility:voiceguidance",
-            "xrn:firebolt:capability:account:uid",
-            "xrn:firebolt:capability:approve:content",
-            "xrn:firebolt:capability:approve:purchase",
-            "xrn:firebolt:capability:device:distributor",
-            "xrn:firebolt:capability:device:id",
-            "xrn:firebolt:capability:device:info",
-            "xrn:firebolt:capability:device:make",
-            "xrn:firebolt:capability:device:model",
-            "xrn:firebolt:capability:device:name",
-            "xrn:firebolt:capability:device:sku",
-            "xrn:firebolt:capability:device:uid",
-            "xrn:firebolt:capability:discovery:entity-info",
-            "xrn:firebolt:capability:discovery:navigate-to",
-            "xrn:firebolt:capability:discovery:policy",
-            "xrn:firebolt:capability:discovery:purchased-content",
-            "xrn:firebolt:capability:lifecycle:launch",
-            "xrn:firebolt:capability:localization:country-code",
-            "xrn:firebolt:capability:localization:language",
-            "xrn:firebolt:capability:localization:locale",
-            "xrn:firebolt:capability:metrics:general",
-            "xrn:firebolt:capability:metrics:media",
-            "xrn:firebolt:capability:network:status",
-            "xrn:firebolt:capability:power:state",
-            "xrn:firebolt:capability:privacy:advertising",
-            "xrn:firebolt:capability:privacy:content",
-            "xrn:firebolt:capability:profile:flags"
-        ],
-        "grantPolicies": {
-            "xrn:firebolt:capability:accessory:pair": {
-                "use": {
-                    "options": [
-                        {
-                            "steps": [
-                                {
-                                    "capability": "xrn:firebolt:capability:usergrant:acknowledge"
-                                }
-                            ]
-                        }
-                    ],
-                    "scope": "app",
-                    "lifespan": "forever",
-                    "privacySetting": {
-                        "property": "Privacy.shareWatchHistory",
-                        "allowValue": true,
-                        "updateProperty": true,
-                        "autoGrantIfAllowed": false,
-                        "revokeGrantsOnDeny": false
-                    },
-                    "overridable": true
+  "schemaVersion": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0,
+    "readable": "Firebolt Device Manifest v1.0.0"
+  },
+  "capabilities": {
+    "supported": [
+      "xrn:firebolt:capability:lifecycle:state",
+      "xrn:firebolt:capability:lifecycle:initialize",
+      "xrn:firebolt:capability:lifecycle:ready",
+      "xrn:firebolt:capability:discovery:watched",
+      "xrn:firebolt:capability:accessibility:closedcaptions",
+      "xrn:firebolt:capability:accessibility:voiceguidance",
+      "xrn:firebolt:capability:account:uid",
+      "xrn:firebolt:capability:approve:content",
+      "xrn:firebolt:capability:approve:purchase",
+      "xrn:firebolt:capability:device:distributor",
+      "xrn:firebolt:capability:device:id",
+      "xrn:firebolt:capability:device:info",
+      "xrn:firebolt:capability:device:make",
+      "xrn:firebolt:capability:device:model",
+      "xrn:firebolt:capability:device:name",
+      "xrn:firebolt:capability:device:sku",
+      "xrn:firebolt:capability:device:uid",
+      "xrn:firebolt:capability:discovery:entity-info",
+      "xrn:firebolt:capability:discovery:navigate-to",
+      "xrn:firebolt:capability:discovery:policy",
+      "xrn:firebolt:capability:discovery:purchased-content",
+      "xrn:firebolt:capability:lifecycle:launch",
+      "xrn:firebolt:capability:localization:country-code",
+      "xrn:firebolt:capability:localization:language",
+      "xrn:firebolt:capability:localization:locale",
+      "xrn:firebolt:capability:metrics:general",
+      "xrn:firebolt:capability:metrics:media",
+      "xrn:firebolt:capability:network:status",
+      "xrn:firebolt:capability:power:state",
+      "xrn:firebolt:capability:privacy:advertising",
+      "xrn:firebolt:capability:privacy:content",
+      "xrn:firebolt:capability:profile:flags"
+    ],
+    "grantPolicies": {
+      "xrn:firebolt:capability:discovery:watched": {
+        "use": {
+          "options": [
+            {
+              "steps": [
+                {
+                  "capability": "xrn:firebolt:capability:usergrant:acknowledge"
                 }
+              ]
             }
+          ],
+          "scope": "app",
+          "lifespan": "forever",
+          "privacySetting": {
+            "property": "Privacy.shareWatchHistory",
+            "allowValue": true,
+            "updateProperty": true,
+            "autoGrantIfAllowed": false,
+            "revokeGrantsOnDeny": false
+          },
+          "overridable": true
         }
+      }
+    }
+  },
+  "configuration": {
+    "schema": "<add schema path here...>",
+    "api": {
+      "gateway": "ws://0.0.0.0/"
     },
-    "configuration": {
-        "schema": "<add schema path here...>",
-        "api": {
-            "gateway": "ws://0.0.0.0/"
-        },
-        "hal": {
-            "gateway": "ws://127.0.0.1:9998/jsonrpc"
-        },
-        "applications": {
-            "delegatedAppLaunching": true
-        },
-        "device": {
-            "models": {
-                "SCXI11AIC": {
-                    "name": "XiOne",
-                    "type": "ipstb"
-                },
-                "SCXI11ADS": {
-                    "name": "XiOne",
-                    "type": "ipstb"
-                },
-                "SCXI11BEI": {
-                    "name": "XiOne-SCB",
-                    "type": "ipstb"
-                }
-            }
-        }
-    },
-    "lifecycle": {
-        "appReadyTimeoutMs": 30000,
-        "appFinishedTimeoutMs": 2000,
-        "maxLoadedApps": 5,
-        "minAvailableMemoryKb": 1024,
-        "prioritized": [
-            "root",
-            "refui"
-        ]
+    "hal": {
+      "gateway": "ws://127.0.0.1:9998/jsonrpc"
     },
     "applications": {
-        "distribution": {
-            "catalog": "https://distribution.com/asdlfkj",
-            "library": "file:///distribution/library"
+      "delegatedAppLaunching": true
+    },
+    "device": {
+      "models": {
+        "SCXI11AIC": {
+          "name": "XiOne",
+          "type": "ipstb"
         },
-        "defaults": {
-            "xrn:firebolt:application-type:main": "<epgAppId>",
-            "xrn:firebolt:application-type:settings": "<settingsAppId>"
+        "SCXI11ADS": {
+          "name": "XiOne",
+          "type": "ipstb"
+        },
+        "SCXI11BEI": {
+          "name": "XiOne-SCB",
+          "type": "ipstb"
         }
+      }
     }
+  },
+  "lifecycle": {
+    "appReadyTimeoutMs": 30000,
+    "appFinishedTimeoutMs": 2000,
+    "maxLoadedApps": 5,
+    "minAvailableMemoryKb": 1024,
+    "prioritized": [
+      "root",
+      "refui"
+    ]
+  },
+  "applications": {
+    "distribution": {
+      "catalog": "https://distribution.com/asdlfkj",
+      "library": "file:///distribution/library"
+    },
+    "defaults": {
+      "xrn:firebolt:application-type:main": "<epgAppId>",
+      "xrn:firebolt:application-type:settings": "<settingsAppId>"
+    }
+  }
 }
