@@ -71,9 +71,6 @@ const validate = async (jsonFile, schemaFile, shared) => {
                     logError('Device schema is missing required capability:  \x1b[0m\x1b[38;5;202m' + error.params.allowedValue + '\x1b[0m')
                 }
             }
-            else if (error.instancePath.startsWith("/capabilities/grantPolicies/")) {
-                logError('Device schema overrides unoverridable GrantPolicy:  \x1b[0m\x1b[38;5;202m' + error.instancePath.split("/").pop() + '\x1b[0m')
-            }
             else {
                 leftover.push(error)
             }
