@@ -63,10 +63,9 @@
         "lifespan": "forever",
         "privacySetting": {
           "property": "Privacy.shareWatchHistory",
-          "allowValue": true,
           "updateProperty": true,
-          "autoGrantIfAllowed": false,
-          "revokeGrantsOnDeny": false
+          "autoApplyPolicy": "always",
+          "revokeGrantsOnDisallow": false
         },
         "overridable": true
       }
