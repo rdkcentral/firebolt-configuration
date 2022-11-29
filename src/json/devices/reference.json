@@ -40,31 +40,37 @@
       "xrn:firebolt:capability:privacy:content",
       "xrn:firebolt:capability:profile:flags"
     ],
-    "grantPolicies": {
-      "xrn:firebolt:capability:discovery:watched": {
-        "use": {
-          "options": [
-            {
-              "steps": [
-                {
-                  "capability": "xrn:firebolt:capability:usergrant:acknowledge"
-                }
-              ]
-            }
-          ],
-          "scope": "app",
-          "lifespan": "forever",
-          "privacySetting": {
-            "property": "Privacy.shareWatchHistory",
-            "allowValue": true,
-            "updateProperty": true,
-            "autoGrantIfAllowed": false,
-            "revokeGrantsOnDeny": false
+    "grantPolicies": [
+      {
+        "triggers": [
+          {
+            "use": "xrn:firebolt:capability:discovery:watched"
           },
-          "overridable": true
-        }
+          {
+            "use": "xrn:firebolt:capability:discovery:watch-next"
+          }
+        ],
+        "options": [
+          {
+            "steps": [
+              {
+                "capability": "xrn:firebolt:capability:usergrant:acknowledge"
+              }
+            ]
+          }
+        ],
+        "scope": "app",
+        "lifespan": "forever",
+        "privacySetting": {
+          "property": "Privacy.shareWatchHistory",
+          "allowValue": true,
+          "updateProperty": true,
+          "autoGrantIfAllowed": false,
+          "revokeGrantsOnDeny": false
+        },
+        "overridable": true
       }
-    }
+    ]
   },
   "configuration": {
     "schema": "<add schema path here...>",
