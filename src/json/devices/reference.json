@@ -44,10 +44,12 @@
       {
         "triggers": [
           {
-            "use": "xrn:firebolt:capability:discovery:watched"
+            "capability": "xrn:firebolt:capability:discovery:watched",
+            "role": "use"
           },
           {
-            "use": "xrn:firebolt:capability:discovery:watch-next"
+            "capability": "xrn:firebolt:capability:discovery:watch-next",
+            "role": "use"
           }
         ],
         "options": [
