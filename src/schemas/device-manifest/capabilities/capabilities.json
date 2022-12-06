@@ -18,15 +18,37 @@
             ]
         },
         "grantPolicies": {
-            "type": "array",
-            "items": {
-                "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
-            }
+            "allOf": [
+                {
+                    "type": "object",
+                    "patternProperties": {
+                        "^xrn:firebolt:capability:[a-zA-Z0-9\\-]{1,32}:[a-zA-Z0-9\\-]{1,32}$": {
+                            "type": "object",
+                            "properties": {
+                                "use": {
+                                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+                                },
+                                "manage": {
+                                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+                                },
+                                "provide": {
+                                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"        
+                                }        
+                            }
+                        }
+                    }
+                },
+                {
+                    "$ref": "https://meta.rdkcentral.com/firebolt/device-manifest#/definitions/GrantPolicyOverrides"
+                }
+            ]
         }
     },
     "additionalProperties": false,
     "required": [
-        "supported"
+      "supported"
     ],
-    "definitions": {}
-}
+    "definitions": {
+    }
+  }
+  
