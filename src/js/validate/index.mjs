@@ -21,6 +21,7 @@ import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 import { promises } from "fs"
 import { logError } from '@firebolt-js/openrpc/util/shared/helpers.mjs'
+import fetch from 'node-fetch';
 
 const { readFile, readdir } = promises
 
@@ -49,13 +50,45 @@ const dirRecursive = async dir => {
     return Array.prototype.concat(...files);
 }
 
+const replaceUri = (existing, replacement, schema) => {
+    if (schema && schema.hasOwnProperty && schema.hasOwnProperty('$ref') && (typeof schema['$ref'] === 'string')) {
+        if (schema['$ref'].indexOf(existing) === 0) {
+            schema['$ref'] = schema['$ref'].split('#').map(x => x === existing ? replacement : x).join('#')
+        }
+    }
+    else if (schema && (typeof schema === 'object')) {
+        Object.keys(schema).forEach(key => {
+            replaceUri(existing, replacement, schema[key])
+        })
+    }
+}
+
+const removeIgnoredAdditionalItems = schema => {
+    if (schema && schema.hasOwnProperty && schema.hasOwnProperty('additionalItems')) {
+        if (!schema.hasOwnProperty('items') || !Array.isArray(schema.items)) {
+            delete schema.additionalItems
+        }
+    }
+    else if (schema && (typeof schema === 'object')) {
+        Object.keys(schema).forEach(key => removeIgnoredAdditionalItems(schema[key]))
+    }
+}
+
 const validate = async (jsonFile, schemaFile, shared) => {
     const json = await loadJson(jsonFile)
     const schema = await loadJson(schemaFile)
     const ajv = new Ajv({allErrors: true})
+    addFormats(ajv)
+    ajv.addVocabulary(['x-method', 'x-this-param', 'x-additional-params'])
 
     shared.forEach(schema => ajv.addSchema(schema))
-    addFormats(ajv)
+
+    let openrpc = await (await fetch('https://meta.open-rpc.org', { method: 'GET' })).json()
+    removeIgnoredAdditionalItems(openrpc)
+    replaceUri('https://raw.githubusercontent.com/json-schema-tools/meta-schema/1.5.9/src/schema.json', 'https://meta.json-schema.tools/', openrpc)
+    let jsonschemaTools = await (await fetch('https://meta.json-schema.tools/', { method: 'GET' })).json()
+    ajv.addSchema(jsonschemaTools)
+    ajv.addSchema(openrpc)
 
     const validator = ajv.compile(schema)
     const valid = validator(json)
@@ -84,7 +117,11 @@ const validate = async (jsonFile, schemaFile, shared) => {
 //const schemas = await Promise.all(dirRecursive(parsedArgs['shared-schemas']).map(path => loadJson(path))
 
 // locate all of the shared schemas and load them
-const schemas = await Promise.all((await dirRecursive(parsedArgs['shared-schemas'])).map(path => loadJson(path)))
-await validate(parsedArgs.input, parsedArgs.schema, schemas)
+const run = async () => {
+    const schemas = await Promise.all((await dirRecursive(parsedArgs['shared-schemas'])).map(path => loadJson(path)))
+    await validate(parsedArgs.input, parsedArgs.schema, schemas)
+}
 
-signOff()
+run().then(() => {
+    signOff()
+})
