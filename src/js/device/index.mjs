@@ -59,7 +59,7 @@ const generate = async (jsonFile) => {
         type: "object",
         properties: Object.fromEntries(Object.entries(json.capabilities).map(([capability, policy]) => {
             const unoverridable = ["use", "manage", "provide"]
-                                    .filter(role => policy[role].grantPolicy && !policy[role].grantPolicy.overridable)
+                                    .filter(role => policy[role] && policy[role].grantPolicy && !policy[role].grantPolicy.overridable)
 
             const result = {
                 type: "object",
