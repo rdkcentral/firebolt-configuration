@@ -21,41 +21,6 @@
       "description": "The static dimensions that the app was coded to. Firebolt will scale the app to fit the screen. For example, if the app was coded to 1280x720 and the device runs in 1920x1080, Firebolt will set the window dimensions to 1280x720 and scale by a factor of 1.5. If this value is not given, the app is assumed to dynamically adjust itself to any dimensions and thus will run in the dimensions of the device with no scaling factor.",
       "$ref": "https://meta.comcast.com/firebolt/types#/definitions/Dimensions"
     },
-    "images": {
-      "description": "Imagery for the app.",
-      "type": "array",
-      "items": {
-        "$ref": "https://meta.comcast.com/firebolt/types#/definitions/Image"
-      }
-    },
-    "types": {
-      "description": "The types of the app. One or more types must be provided.",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "entertainment", "game", "productivity", "lifestyle"
-        ]
-      },
-      "minItems": 1
-    },
-    "categories": {
-      "description": "The categories of the app. Note that the categories must be associated with the types of the app (e.g., you can’t have an app of type game with a category of contacts).",
-      "type": "array",
-      "items": {
-        "anyOf": [
-          { "$ref": "#/$defs/category_entertainment" },
-          { "$ref": "#/$defs/category_game" },
-          { "$ref": "#/$defs/category_productivity" },
-          { "$ref": "#/$defs/category_lifestyle" }
-        ]
-      }
-    },
-    "endUserDiscoverable": {
-      "description": "Whether this app is included in programmatic end user discovery experiences. True for most apps.",
-      "type": "boolean",
-      "default": true
-    },
     "appFamily": {
       "description": "A tag that app partners can apply to group together a subset of their apps. ny lookup for apps in an appFamily should use appPartnerId + \":\" appFamily as the key.",
       "type": "string",
@@ -65,37 +30,6 @@
   },
   "additionalProperties": false,
   "required": [
-    "appKey", "name", "shortName", "types"
-  ],
-
-  "$defs": {
-    "category_entertainment": {
-      "type": "string",
-      "enum": [
-        "content_aggregation", "sports", "user_generated_content",
-        "produced_content", "linear", "on_demand", "interactive"
-      ]
-    },
-    "category_game": {
-      "type": "string",  
-      "enum": [
-        "action", "adventure", "arcade", "board", "card",
-        "casino", "casual", "educational", "music", "puzzle",
-        "racing", "role_playing", "simulation", "sports",
-        "strategy", "trivia", "word"
-      ]
-    },
-    "category_productivity": {
-      "type": "string",
-      "enum": [
-        "contacts"
-      ]
-    },
-    "category_lifestyle": {
-      "type": "string",
-      "enum": [
-        "weather", "news", "maps_directions"
-      ]
-    }
-  }
+    "appKey", "name"
+  ]
 }
