@@ -20,10 +20,6 @@
       "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/fallback",
       "description": "distributor.fallback: Optional settings to control what should happen if the app can't launch."
     },
-    "deviceSkus": {
-      "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/deviceSkus",
-      "description": "distributor.deviceSkus: Optional allowed and/or excluded Device SKUs to control the subset of devices upon which the app may run."
-    },
     "signing": {
       "$ref": "https://meta.rdkcentral.com/firebolt/app-manifest/distributor/signing",
       "description": "distributor.signing: Digital cert + signature. Mandatory for production apps. Optional when developing apps and side loading them onto a device."
