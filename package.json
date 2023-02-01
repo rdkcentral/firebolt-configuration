@@ -25,7 +25,8 @@
     "build:version": "npm run merge:version && npm run apis:import && npm run capabilities:add",
     "build:device": "npm run merge:device && node ./src/js/device/index.mjs -i ./dist/schemas/device-manifest/device-manifest.json -o ./dist/schemas/device-manifest/device-manifest.json",
     "validate:version": "node ./src/js/validate/index.mjs -s ./dist/schemas/version-manifest/version-manifest.json -i ./dist/json/firebolt.json -ss ./node_modules/@firebolt-js/schemas/src/schemas",
-    "validate:device": "node ./src/js/validate/index.mjs -s ./dist/schemas/device-manifest/device-manifest.json -i ./src/json/devices/reference.json -ss ./node_modules/@firebolt-js/schemas/src/schemas"
+    "validate:device": "node ./src/js/validate/index.mjs -s ./dist/schemas/device-manifest/device-manifest.json -i ./src/json/devices/reference.json -ss ./node_modules/@firebolt-js/schemas/src/schemas",
+    "build:spec": "node ./src/js/spec/index.mjs"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -34,10 +35,10 @@
   },
   "homepage": "https://github.com/rdkcentral/firebolt-configurations#readme",
   "devDependencies": {
-    "@firebolt-js/manage-sdk": "git://github.com/rdkcentral/firebolt-manage-sdk.git",
+    "@firebolt-js/manage-sdk": "*",
     "@firebolt-js/openrpc": "^1.7.0",
     "@firebolt-js/schemas": "^0.6.0",
-    "@firebolt-js/sdk": "^0.9.0",
+    "@firebolt-js/sdk": "*",
     "ajv": "^8.3.0",
     "ajv-formats": "^2.1.0",
     "nopt": "^6.0.0",
