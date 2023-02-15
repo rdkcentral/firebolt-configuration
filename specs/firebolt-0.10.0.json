@@ -325,8 +325,8 @@
         "negotiable": true
       },
       "manage": {
-        "public": true,
-        "negotiable": true
+        "public": false,
+        "negotiable": false
       },
       "provide": {
         "public": true,
@@ -867,6 +867,21 @@
       "manage": {
         "public": false,
         "negotiable": false
+      },
+      "provide": {
+        "public": false,
+        "negotiable": false
+      }
+    },
+    "xrn:firebolt:capability:token:account": {
+      "level": "must",
+      "use": {
+        "public": false,
+        "negotiable": false
+      },
+      "manage": {
+        "public": true,
+        "negotiable": true
       },
       "provide": {
         "public": false,
@@ -8814,12 +8829,12 @@
         },
         {
           "name": "account.session",
-          "summary": "Used by a distributor to push Session token to firebolt.",
+          "summary": "Used by a distributor to push an account session token to firebolt.",
           "tags": [
             {
               "name": "capabilities",
               "x-manages": [
-                "xrn:firebolt:capability:token:session"
+                "xrn:firebolt:capability:token:account"
               ]
             }
           ],
