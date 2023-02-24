@@ -10,7 +10,7 @@
     "url": "git+https://github.com/rdkcentral/firebolt-configurations.git"
   },
   "scripts": {
-    "prepare": "npx mkdirp dist/schemas/app-manifest dist/schemas/device-manifest dist/schemas/version-manifest dist/json",
+    "prepare": "npx mkdir -p dist/schemas/app-manifest dist/schemas/device-manifest dist/schemas/version-manifest dist/json",
     "merge": "npm run merge:app && npm run merge:version && npm run merge:device",
     "build": "npm run build:version && npm run build:device && npm run build:app",
     "validate": "npm run validate:version && npm run validate:device",
