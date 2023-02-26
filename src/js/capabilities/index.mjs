@@ -27,7 +27,8 @@ const { readFile, writeFile } = promises
 const knownOpts = {
     'mode': [String],
     'source': [path],
-    'target': [path]
+    'target': [path],
+    'sdk': [String]
 }
 const shortHands = {
     'm': '--mode',
@@ -40,7 +41,7 @@ const signOff = () => console.log('\nThis has been a presentation of \x1b[38;5;2
 
 const loadJson = file => readFile(file).then(data => JSON.parse(data.toString()))
 
-const doImport = (sources, target, clear=false, report=false) => {
+const doImport = (sources, target, clear=false, report=false, reportUsed=false) => {
     const result = JSON.parse(JSON.stringify(target))
 
     if (clear && report) throw "Error, cannot clear and generate a report!"
@@ -97,6 +98,9 @@ const doImport = (sources, target, clear=false, report=false) => {
 
     if (report) {
         const unused = []
+        const useCaps = []
+        const manageCaps = []
+        const provideCaps = []
         Object.entries(result.capabilities).forEach(([capability, policy]) => {
             const uses = source.methods.filter(m => m.tags && m.tags.find(t => t.name === "capabilities") && m.tags.find(t => t.name === "capabilities")['x-uses'] && m.tags.find(t => t.name === "capabilities")['x-uses'].includes(capability))
             const provides = source.methods.filter(m => m.tags && m.tags.find(t => t.name === "capabilities") && m.tags.find(t => t.name === "capabilities")['x-provides'] && m.tags.find(t => t.name === "capabilities")['x-provides'] === capability)
@@ -108,15 +112,24 @@ const doImport = (sources, target, clear=false, report=false) => {
                 if (uses.length === 0) {
                     logInfo(' - use    : none')
                 }
+                else {
+                    useCaps.push(capability)
+                }
 
                 manages.forEach(m => logSuccess(' - manage : ' + m.name))
                 if (manages.length === 0) {
                     logInfo(' - manage : none')
                 }
+                else {
+                    manageCaps.push(capability)
+                }
 
                 provides.forEach(m => logSuccess(' - provide: ' + m.name))
                 if (provides.length === 0) {
                     logInfo(' - provide: none')
+                }
+                else {
+                    provideCaps.push(capability)
                 }
 
                 console.log()
@@ -125,20 +138,34 @@ const doImport = (sources, target, clear=false, report=false) => {
                 unused.push(capability)
             }
         })
+
+        if (reportUsed) {
+            logHeader('Used capabilities:')
+
+            console.log(JSON.stringify({
+                use: useCaps,
+                manage: manageCaps,
+                provide: provideCaps
+            }, null, '\t'))
+
+            console.log()
+        }
+
         logHeader('Unused capabilities:')
-        unused.forEach(c => logSuccess(' - ' + c))
+        unused.forEach(c => console.log("'" + c + "',"))
     }
 
     return result
 }
 
-const core = await loadJson('./node_modules/@firebolt-js/sdk/dist/firebolt-open-rpc.json')
-const manage = await loadJson('./node_modules/@firebolt-js/manage-sdk/dist/firebolt-manage-open-rpc.json')
+const core = './node_modules/@firebolt-js/sdk/dist/firebolt-open-rpc.json'
+const manage = './node_modules/@firebolt-js/manage-sdk/dist/firebolt-manage-open-rpc.json'
 const version = await loadJson(parsedArgs.source)
 const sdks = [core, manage]
 let clear = false
 let write = false
 let report = false
+let reportUsed = false
 
 if (parsedArgs.mode === 'clear') {
     while (sdks.length) sdks.pop()
@@ -152,11 +179,19 @@ else if (parsedArgs.mode === 'add') {
 else if (parsedArgs.mode === 'report') {
     write = false
     report = true
+
+    if (parsedArgs.sdk) {
+        reportUsed = true
+        let sdk = sdks.find(s => s.indexOf('/' + parsedArgs.sdk + '/') >= 0)
+        sdks.length = 0;
+        sdks.push(sdk)
+    }
 }
 
 logHeader(`Capabilities - Running ${parsedArgs.mode}`)
 
-const result = JSON.stringify(doImport(sdks, version, clear, report), null, '  ')
+const sdkJson = await Promise.all(sdks.map(loadJson))
+const result = JSON.stringify(doImport(sdkJson, version, clear, report, reportUsed), null, '  ')
 
 if (write) {
   await writeFile(parsedArgs.target, result)

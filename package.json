@@ -18,6 +18,8 @@
     "apis:report": "node ./src/js/apis/index.mjs -s ./dist/json/firebolt.json -m report",
     "capabilities:add": "node ./src/js/capabilities/index.mjs  -s ./dist/json/firebolt.json -t ./dist/json/firebolt.json -m add",
     "capabilities:report": "node ./src/js/capabilities/index.mjs -s ./dist/json/firebolt.json -m report",
+    "capabilities:report:core": "node ./src/js/capabilities/index.mjs -s ./dist/json/firebolt.json -m report --sdk @firebolt-js/sdk",
+    "capabilities:report:manage": "node ./src/js/capabilities/index.mjs -s ./dist/json/firebolt.json -m report --sdk @firebolt-js/manage-sdk",
     "merge:app": "node ./src/js/merge/index.mjs -i ./src/schemas/app-manifest/app-manifest.json -o ./dist/schemas/app-manifest/app-manifest.json",
     "merge:version": "node ./src/js/merge/index.mjs -i ./src/schemas/version-manifest/version-manifest.json -o ./dist/schemas/version-manifest/version-manifest.json",
     "merge:device": "node ./src/js/merge/index.mjs -i ./src/schemas/device-manifest/device-manifest.json -o ./dist/schemas/device-manifest/device-manifest.json",
