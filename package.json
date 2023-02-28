@@ -2,9 +2,12 @@
   "name": "@firebolt-js/configurations",
   "version": "0.1.0",
   "description": "Firebolt configurations",
+  "files": [
+    "src/schemas/**/*"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rdkcentral/firebolt-configurations.git"
+    "url": "git+https://github.com/rdkcentral/firebolt-configuration.git"
   },
   "scripts": {
     "prepare": "npx mkdirp dist/schemas/app-manifest dist/schemas/device-manifest dist/schemas/version-manifest dist/json",
