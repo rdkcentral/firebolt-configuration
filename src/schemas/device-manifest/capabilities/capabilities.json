@@ -22,7 +22,7 @@
                 {
                     "type": "object",
                     "patternProperties": {
-                        "^xrn:firebolt:capability:[a-zA-Z0-9\\-]{1,32}:[a-zA-Z0-9\\-]{1,32}$": {
+                        ".*": {
                             "type": "object",
                             "properties": {
                                 "use": {
@@ -32,23 +32,43 @@
                                     "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
                                 },
                                 "provide": {
-                                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"        
-                                }        
+                                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+                                }
                             }
                         }
+                    },
+                    "propertyNames": {
+                        "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/Capability"
                     }
                 },
                 {
                     "$ref": "https://meta.rdkcentral.com/firebolt/device-manifest#/definitions/GrantPolicyOverrides"
                 }
             ]
+        },
+        "dependencies": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CapRoleString"
+                    }
+                }
+            },
+            "propertyNames": {
+                "$ref": "#/definitions/CapRoleString"
+            }
         }
     },
     "additionalProperties": false,
     "required": [
-      "supported"
+        "supported"
     ],
     "definitions": {
+        "CapRoleString": {
+            "type": "string",
+            "pattern": "^xrn:firebolt:capability:[a-zA-Z0-9\\-]{1,32}:[a-zA-Z0-9\\-]{1,32}(\\[(use|provide|manage)\\])?$"
+        }
     }
-  }
-  
+}
