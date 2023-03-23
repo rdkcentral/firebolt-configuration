@@ -41,7 +41,7 @@
       "xrn:firebolt:capability:profile:flags"
     ],
     "grantPolicies": {
-      "xrn:firebolt:capability:discovery:watched": {
+      "xrn:firebolt:capability:data:app-usage": {
         "use": {
           "options": [
             {
@@ -63,6 +63,17 @@
           "overridable": true
         }
       }
+    },
+    "dependencies": {
+      "xrn:firebolt:capability:discovery:watched": [
+        "xrn:firebolt:capability:data:app-usage"
+      ],
+      "xrn:firebolt:capability:discovery:watch-next": [
+        "xrn:firebolt:capability:data:app-usage"
+      ],
+      "xrn:firebolt:capability:discovery:purchased-content[provide]": [
+        "xrn:firebolt:capability:data:app-usage"
+      ]
     }
   },
   "configuration": {
