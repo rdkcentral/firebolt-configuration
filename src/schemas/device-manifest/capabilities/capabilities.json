@@ -21,19 +21,17 @@
             "allOf": [
                 {
                     "type": "object",
-                    "patternProperties": {
-                        ".*": {
-                            "type": "object",
-                            "properties": {
-                                "use": {
-                                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
-                                },
-                                "manage": {
-                                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
-                                },
-                                "provide": {
-                                    "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
-                                }
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "use": {
+                                "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+                            },
+                            "manage": {
+                                "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
+                            },
+                            "provide": {
+                                "$ref": "https://meta.comcast.com/firebolt/capabilities#/definitions/GrantPolicy"
                             }
                         }
                     },
@@ -48,12 +46,10 @@
         },
         "dependencies": {
             "type": "object",
-            "patternProperties": {
-                ".*": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/CapRoleString"
-                    }
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/CapRoleString"
                 }
             },
             "propertyNames": {
