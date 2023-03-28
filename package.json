@@ -2,12 +2,9 @@
   "name": "@firebolt-js/configurations",
   "version": "0.1.0",
   "description": "Firebolt configurations",
-  "files": [
-    "src/schemas/**/*"
-  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rdkcentral/firebolt-configurations.git"
+    "url": "git+https://github.com/rdkcentral/firebolt-configuration.git"
   },
   "scripts": {
     "prepare": "npx mkdirp dist/schemas/app-manifest dist/schemas/device-manifest dist/schemas/version-manifest dist/json",
@@ -36,7 +33,7 @@
   "homepage": "https://github.com/rdkcentral/firebolt-configurations#readme",
   "devDependencies": {
     "@firebolt-js/manage-sdk": "next",
-    "@firebolt-js/openrpc": "^1.7.0",
+    "@firebolt-js/openrpc": "^1.8.0-next.2",
     "@firebolt-js/schemas": "^0.6.0",
     "@firebolt-js/sdk": "*",
     "ajv": "^8.3.0",
