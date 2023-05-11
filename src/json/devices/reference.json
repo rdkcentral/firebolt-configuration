@@ -38,7 +38,10 @@
       "xrn:firebolt:capability:power:state",
       "xrn:firebolt:capability:privacy:advertising",
       "xrn:firebolt:capability:privacy:content",
-      "xrn:firebolt:capability:profile:flags"
+      "xrn:firebolt:capability:profile:flags",
+      "xrn:firebolt:capability:protocol:wifi",
+      "xrn:firebolt:capability:storage:secure",
+      "xrn:firebolt:capability:token:account"
     ],
     "grantPolicies": {
       "xrn:firebolt:capability:data:app-usage": {

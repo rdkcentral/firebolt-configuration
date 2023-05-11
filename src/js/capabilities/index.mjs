@@ -132,7 +132,7 @@ const doImport = (sources, target, clear=false, report=false) => {
     return result
 }
 
-const core = await loadJson('./node_modules/@firebolt-js/sdk/dist/firebolt-open-rpc.json')
+const core = await loadJson('./node_modules/@firebolt-js/sdk/dist/firebolt-core-open-rpc.json')
 const manage = await loadJson('./node_modules/@firebolt-js/manage-sdk/dist/firebolt-manage-open-rpc.json')
 const version = await loadJson(parsedArgs.source)
 const sdks = [core, manage]
