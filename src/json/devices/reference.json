@@ -41,7 +41,12 @@
       "xrn:firebolt:capability:profile:flags",
       "xrn:firebolt:capability:protocol:wifi",
       "xrn:firebolt:capability:storage:secure",
-      "xrn:firebolt:capability:token:account"
+      "xrn:firebolt:capability:token:account",
+      "xrn:firebolt:capability:capabilities:info",
+      "xrn:firebolt:capability:capabilities:request",
+      "xrn:firebolt:capability:discovery:content-access",
+      "xrn:firebolt:capability:localization:additional-info",
+      "xrn:firebolt:capability:metrics:distributor"
     ],
     "grantPolicies": {
       "xrn:firebolt:capability:data:app-usage": {

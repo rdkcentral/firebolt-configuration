@@ -20,7 +20,7 @@ import path from 'path'
 import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 import { promises } from "fs"
-import { logError } from '@firebolt-js/openrpc/util/shared/helpers.mjs'
+import { logError } from '../../../node_modules/@firebolt-js/openrpc/src/shared/io.mjs'
 import fetch from 'node-fetch';
 
 const { readFile, readdir } = promises
