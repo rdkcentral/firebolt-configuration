@@ -36,7 +36,7 @@
   "homepage": "https://github.com/rdkcentral/firebolt-configurations#readme",
   "devDependencies": {
     "@firebolt-js/manage-sdk": "*",
-    "@firebolt-js/openrpc": "^1.7.0",
+    "@firebolt-js/openrpc": "^2.0.1",
     "@firebolt-js/schemas": "^0.6.0",
     "@firebolt-js/sdk": "*",
     "ajv": "^8.3.0",

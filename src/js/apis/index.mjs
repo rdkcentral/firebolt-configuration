@@ -18,7 +18,7 @@
 import nopt from 'nopt'
 import path from 'path'
 
-import { logHeader, logSuccess, logInfo, logError } from '../../../node_modules/@firebolt-js/openrpc/util/shared/helpers.mjs'
+import { logHeader, logSuccess, logInfo, logError } from '../../../node_modules/@firebolt-js/openrpc/src/shared/io.mjs'
 
 import { promises } from "fs"
 
